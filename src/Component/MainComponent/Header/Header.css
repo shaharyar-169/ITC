@@ -1,0 +1,19 @@
+.Logo{
+    height: 77px;
+    width: 77px;
+    padding-left: 11px;
+
+}
+.logout-menu{
+    min-width: 100px;
+  
+  
+    }
+   .ancher-class{
+    text-align: center;
+    font-size: 12px;
+    padding: 0px !important;
+   }
+/* .dropdown-menu{
+    padding: 0 !important;
+} */
