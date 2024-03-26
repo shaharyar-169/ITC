@@ -46,6 +46,11 @@ export default function Sidebar({ isVisible }) {
   }
 
   const customLinks = {
+    "1-01-00":"/Get_Group",
+    "1-05-00": "/Customer_Maintenance",
+    "1-02-00": "/Get_Area",
+    "1-03-00":'/Get_Collector',
+    "1-04-00":'/Get_Verifier',
     "3-02-08": "/DailySaleReport",
     "3-02-07": "/DailyPurchaseReport",
     "3-02-05": "/DailyStockStatusReport",

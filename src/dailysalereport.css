@@ -355,9 +355,53 @@ flex-wrap: nowrap !important;
 .modal-header{
   background-color: #1f2670 !important;
   color: white !important;
- }
+  height: 50px !important;
+  
+}
+
+.modal-title{
+  font-size: 18px !important;
+} 
 
  .cross-style{
   color: white !important;
   background-color: white !important;
+  font-size: 10px !important;
  }
+
+ 
+ .form-control:focus {
+  color: var(--bs-body-color);
+  background-color: var(--bs-body-bg);
+  border-color: #1f2670;
+  outline: 0;
+  box-shadow: 0 0 0 1px #1f2670;
+}
+
+.popup-btn-style{
+ font-size: 12px !important;
+ background-color: #1f2670;
+ color: white;
+ border-color: #1f2670 !important;
+}
+
+.popup-btn-style:hover{
+  background-color: #1f2670 !important;
+  color: white !important;
+  
+}
+#mail{
+  height: 30px !important;
+  font-size: 12px !important;
+  background: transparent !important;
+}
+#message-text{
+  height: 40px !important;
+  font-size: 12px !important;
+  background: transparent !important;
+}
+#fileInput{
+  background: transparent !important;
+  height: 30px !important;
+
+}

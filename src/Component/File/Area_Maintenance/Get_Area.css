@@ -1,0 +1,20 @@
+/* Small screen styles */
+@media (max-width: 767px) {
+    .Category {
+      margin-left: 5%;
+      margin-right: 5%;
+      max-width: 90%;
+    }
+  }
+  
+  /* Large screen styles */
+  @media (min-width: 768px) {
+    .Category {
+      margin-left: 30%;
+      margin-right: 30%;
+      max-width: 40%;
+    }
+  }
+
+
+

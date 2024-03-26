@@ -1,0 +1,20 @@
+.label {
+  font-size: 11px;
+text-align: right;}
+
+.form-control {
+  background-color: rgb(239, 247, 255);
+  border: 1px solid rgb(153, 153, 153);
+  height: 24px;
+  border-radius: 5px;
+  /* border-radius: 50px; */
+
+  box-shadow: inset 4px 4px 4px #dde2e7, inset -4px -4px 4px white;
+}
+
+.error {
+  border: 1px solid red;
+}
+.btn {
+  border-radius: 30px;
+}

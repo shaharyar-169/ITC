@@ -45,7 +45,31 @@ export default function CategoryListReport() {
     const [issortforItemDescription, setissortforItemDescription] = useState(false);
     const [issortforstatus, setissortforstatus] = useState(false);
 
+    // Mail ref
+    const emailRef = useRef(null);
+    const subjectRef = useRef(null);
+    const fileRef = useRef(null);
 
+
+// function call for get the value 
+    const handleSend = (event) => {
+        event.preventDefault();
+        const emailValue = emailRef.current.value;
+        const subjectValue = subjectRef.current.value;
+        const fileValue = fileRef.current.files[0]; // Since it's a file input, access files array
+
+        fetchmailData(emailValue, subjectValue, fileValue)
+
+// Clear the form fields
+        emailRef.current.value = '';
+        subjectRef.current.value = '';
+        fileRef.current.value = '';
+
+// Do something with the values
+        console.log("Email:", emailValue);
+        console.log("Subject:", subjectValue);
+        console.log("File:", fileValue);
+    };
 
     console.log(transectionType)
     console.log(searchQuery)
@@ -60,8 +84,30 @@ export default function CategoryListReport() {
 
     const currentDate = moment().format("DD-MM-YYYY");
 
-    
+
     const dashboardUrl = "https://crystalsolutions.com.pk/iqbaltrader/web/CategoryList.php";
+    const dashboardUrl2 = "https://crystalsolutions.com.pk/iqbaltrader/web/EmailSend.php";
+
+
+    const fetchmailData = (email, subject, file) => {
+        const formData = new FormData();
+        formData.append('email', email);
+        formData.append('subject', subject);
+        formData.append('file', file);
+
+        axios.post(dashboardUrl2, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+        })
+            .then((response) => {
+                console.log("Mail Response", response.data);
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+            });
+    };
+
 
 
     // function fecthing data for dailySales
@@ -705,6 +751,27 @@ export default function CategoryListReport() {
         setSelectedIndex(index); // Update selectedIndex state with the index of the clicked row
     };
 
+    const handlePdfDownloadAndAttach = () => {
+        // Create a new jsPDF instance with portrait orientation
+        const doc = new jsPDF({ orientation: "portrait" });
+    
+        // Generate the PDF content...
+    
+        // Save the PDF content as a Blob object
+        const pdfBlob = doc.output('blob');
+    
+        // Create a FormData object
+        const formData = new FormData();
+        formData.append('pdfFile', pdfBlob, 'table_data.pdf');
+    
+        // Attach the PDF file to the email form
+        const emailForm = document.getElementById('emailForm'); // Assuming your email form has an id of 'emailForm'
+        emailForm.append('pdfFile', pdfBlob, 'table_data.pdf');
+    };
+    
+    
+
+
     return (
         <div>
             <Navbar
@@ -792,68 +859,73 @@ export default function CategoryListReport() {
                         </p>
                     </div>
                 </div>
+
+
                 <div className="d-flex " style={{ marginRight: '30px' }}>
-                {/* <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Open modal for @mdo</button> */}
+                    {/* <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Open modal for @mdo</button> */}
                     <IoIosMail
-                    style={{ color: 'white', fontSize: '23px' }}
-                    type="button"
-                    data-bs-toggle="modal"
-                    data-bs-target="#exampleModal"
+                        onClick={handlePdfDownloadAndAttach}
+                        style={{ color: 'white', fontSize: '23px' }}
+                        type="button"
+                        data-bs-toggle="modal"
+                        data-bs-target="#exampleModal"
+                      
                     />
 
-             
-             
                     <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div className="modal-dialog">
                             <div className="modal-content">
                                 <div className="modal-header">
-                                    <h5 className="modal-title text-center" id="exampleModalLabel">New message</h5>
-                                    <button 
-  type="button" 
-  style={{ color: 'white', fontSize: '20px' }} // Apply white color and font size
-  className="btn-close cross-style" 
-  data-bs-dismiss="modal" 
-  aria-label="Close"
-></button>                                </div>
+                                    <h5 className="modal-title text-center" id="exampleModalLabel">IQbal Trading Company</h5>
+                                    <button
+                                        type="button"
+                                        style={{ color: 'white', fontSize: '20px' }} // Apply white color and font size
+                                        className="btn-close cross-style"
+                                        data-bs-dismiss="modal"
+                                        aria-label="Close"
+                                    ></button>                                </div>
                                 <div className="modal-body">
-                                    <form>
+                                    <form id="emailForm">
                                         <div className="mb-3">
-                                            <label style={{fontSize:"12px"}} for="recipient-name" className="col-form-label">Email</label>
+                                            <label style={{ fontSize: "12px" }} for="recipient-name" className="col-form-label">Email</label>
                                             <input
-                                          
-                                            type="email"
-                                            required 
-                                            placeholder="enter email adderss"
-                                            className="form-control"
-                                            id="mail" 
-                                            style={{fontSize:"12px"}}
+                                                type="email"
+                                                required
+                                                placeholder="enter email adderss"
+                                                className="form-control  "
+                                                id="mail"
+                                                ref={emailRef}
+                                               
                                             />
-                                           
+
                                         </div>
-                                       
+
                                         <div className="mb-3">
-                                            <label style={{fontSize:"12px"}} for="message-text" className="col-form-label">Subject:</label>
-                                            <textarea 
-                                            className="form-control" 
-                                            id="message-text"
-                                            style={{fontSize:"12px"}}
+                                            <label style={{ fontSize: "12px" }} for="message-text" className="col-form-label">Subject:</label>
+                                            <textarea
+                                                className="form-control"
+                                                id="message-text"
+                                                ref={subjectRef}
+                                                style={{ fontSize: "12px" }}
                                             ></textarea>
                                         </div>
 
                                         <div className="mb-3">
-                                            <label style={{fontSize:"12px"}} for="message-text" className="col-form-label">File Attach:</label>
-                                            <input 
-                                            className="form-control" 
-                                            type="file"
-                                            style={{fontSize:"12px"}}
+                                            <label style={{ fontSize: "12px" }} for="message-text" className="col-form-label">File Attach:</label>
+                                            <input
+                                                className="form-control"
+                                                type="file"
+                                                style={{ fontSize: "12px" }}
+                                                ref={fileRef}
+                                                id="fileInput"
                                             ></input>
                                         </div>
 
                                     </form>
                                 </div>
                                 <div className="modal-footer">
-                                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" className="btn btn-primary">Send </button>
+                                    <button type="button" className="btn popup-btn-style" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" className="btn btn-primary popup-btn-style" onClick={handleSend}>Send </button>
                                 </div>
                             </div>
                         </div>

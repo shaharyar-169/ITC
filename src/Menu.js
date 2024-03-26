@@ -301,7 +301,8 @@ export default function Menu() {
     "3-01-11":"/EmployeeList",
     "3-04-02":"/ItemstatusReport",
     "3-04-07": "/ItemmarginReport",
-    "3-04-08":"/SlowmovingReport"
+    "3-04-08":"/SlowmovingReport",
+    "1-01-00":"/Get_Group"
   };
   const toggleSidebar = () => {
     console.log("Toggle sidebar clicked");

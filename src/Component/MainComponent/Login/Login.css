@@ -71,7 +71,12 @@ body {
   }
 }
 
-
+#userid:focus {
+  box-shadow: 0 0 0 1.2px #1f2670 !important;
+}
+#password:focus{
+  box-shadow: 0 0 0 1.2px #1f2670 !important;
+}
 
 
 

@@ -36,7 +36,7 @@ function Login() {
   // const { isLoggedIn, userData, login } = useAuth();
 
   function UserLogin(event) {
-   event.preventDefault();
+    event.preventDefault();
     const data = {
       userid: userid.current.value,
       password: password.current.value,
@@ -198,25 +198,25 @@ function Login() {
 
 
       <Container style={{ width: '100%', height: '100vh', display: "flex", alignItems: "center", justifyContent: 'center' }}>
-     {alertData && (
-        <Alert
-          severity={alertData.type}
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 50,
-            // width: "30%",
-            marginLeft: "40%",
-            zIndex: 1000,
-            textAlign: "center",
-          }}
-        >
-          {alertData.message}
-        </Alert>
-)}
-      
+        {alertData && (
+          <Alert
+            severity={alertData.type}
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 50,
+              // width: "30%",
+              marginLeft: "40%",
+              zIndex: 1000,
+              textAlign: "center",
+            }}
+          >
+            {alertData.message}
+          </Alert>
+        )}
+
         <div id="form-bg-color" style={{ width: "40%", height: '75%', border: "1px solid #cccccc ", padding: "10px", display: 'flex', justifyContent: 'center' }}>
-          <form onSubmit={UserLogin} style={{ width: '80%' }} >
+          <form onSubmit={UserLogin}  >
             <div style={{ justifyContent: "center", display: "flex", flexDirection: 'column', alignItems: "center", fontSize: "12px", paddingBottom: '40px' }}>
               <div style={{ width: "30%" }}>
                 <img src={itc} alt="Login" style={{ width: "100%" }} />
@@ -231,7 +231,7 @@ function Login() {
             <div className="mb-3" style={{ fontSize: '14px' }}>
               <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
               <input
-                style={{ border: '1px solid #cccccc', fontSize: '14px' }}
+                style={{ border: '1px solid #cccccc', fontSize: '14px', height: '30px', background: '#EDF2FF', boxShadow: 'none' }}
                 type="text"
                 id="userid"
                 name="userid"
@@ -245,13 +245,14 @@ function Login() {
             <div className="mb-3" style={{ fontSize: '14px' }}>
               <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
               <input
+                style={{ border: '1px solid #cccccc', fontSize: '14px', height: '30px', background: '#EDF2FF', boxShadow: 'none' }}
                 type="password"
                 id="password"
                 name="password"
                 ref={password}
                 placeholder="Password"
                 required
-                style={{ border: '1px solid #cccccc', fontSize: '14px' }}
+
                 className="form-control"
 
               />
@@ -261,8 +262,8 @@ function Login() {
               type="submit"
               disabled={userData.loading}
               className="form-control "
-              style={{ background: '#1f2670', color: "white" }}
-            >Login</button>
+              style={{ border: '1px solid #cccccc', fontSize: '18px', height: '30px', background: '#010066', boxShadow: 'none', color: 'white', paddingBottom: '30px' }}
+            ><span>Login</span></button>
 
             <div className="d-flex justify-content-center  flex-column" style={{ paddingTop: '30px', fontSize: '12px' }}>
               <div className="d-flex align-items-center ">
@@ -277,25 +278,11 @@ function Login() {
 
 
               <div className="d-flex align-items-center ">
-                <span style={{fontSize:'12px'}} >+92 4235184078 +92 3044770075 <br/> E-mail: info@crystalsolutions.com.pk</span><br />
+                <span style={{ fontSize: '12px' }} >+92 4235184078 +92 3044770075 <br /> E-mail: info@crystalsolutions.com.pk</span><br />
               </div>
 
             </div>
           </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         </div>
 
       </Container>
